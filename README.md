@@ -41,13 +41,11 @@ conda activate ammm
 
 ## Testing the installation
 
-```bash
-bash ..... 
-```
+...
 
 ## Running the workflow
 
-....
+...
 
 
 
