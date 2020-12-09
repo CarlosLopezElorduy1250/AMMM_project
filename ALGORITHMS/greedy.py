@@ -10,6 +10,16 @@ centre2cities_secondary = {}    # Dictionary relating each centre with the citie
 
 
 
+
+
+# location2cities_primary   = {}
+# location2cities_secondary = {}
+
+# for location in name2location.keys():
+#     location2cities_primary[location] = []
+#     for city in name2city.keys():
+#         if distance( (name2location[location].lx, name2location[location].ly), (name2city[city].cx, name2city[city].cy)) < 
+
 # for city in posCities:
 #     print(city)
 #     for location in posLocations:
