@@ -201,3 +201,17 @@ def parse_input(dat):
 
 def distance(a, b): # Euclidean distance between two points ->  a = (a_x, a_y) | b = (b_x, b_y)
     return np.sqrt( (a[0]-b[0])**2 + (a[1]-b[1])**2 )
+
+
+def servesLocCit(l, c):
+    '''
+    This function tries to assign the center in location "l" to the city "c" as either primary or secondary (if possible)
+    '''
+    global name2city, name2location
+
+    dist_c2l = distance((name2city[c].cx, name2city[c].cy) , (name2location[current_location].lx, name2location[current_location].ly))
+
+    # TEST PRIMARY
+    
+
+    # TEST SECONDARY
