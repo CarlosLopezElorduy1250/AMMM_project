@@ -2,8 +2,11 @@
 ## COURSE PROJECT
 
 An Internet retail company wants to build several logistic centers in order to operate in a new country. Its goal is to spend the minimum amount of money, but making sure that customers receive their products quickly enough.
-The company has a set of locations L where logistic centers could be installed, and a set of cities C that need to be served. For each location l ∈ L we know its coordinates (lx,ly), and for every city c ∈ C we know its coordinates (cx,cy) and its population pc. We have available a set T of logistic center types. Each type t ∈ T represents a logistic center with capacity capt, working distance d cityt, and installation cost costt.
+
+The company has a set of locations L where logistic centers could be installed, and a set of cities C that need to be served. For each location l ∈ L we know its coordinates (lx,ly), and for every city c ∈ C we know its coordinates (cx,cy) and its population pc. We have available a set T of logistic center types. Each type t ∈ T represents a logistic center with capacity capt, working distance d cityt, and installation cost cost_t.
+
 Each city must be served by exactly one primary and one secondary center, which of course must be different. Logistic centers should be placed so that the distance1 between any two of them is at least d center. The capacity of a center of type t requires that the sum of the populations of the cities it serves as a primary center plus 10% the sum of the populations of the cities it serves as a secondary center cannot exceed capt. With respect to its working distance, a center of type t cannot be the primary center of any city at distance more than d cityt, or the secondary center of any city at distance more than 3 ∗ d cityt.
+
 The goal of this project is to decide where to install the logistic centers, determine of which type each center should be and to which primary and secondary center each city should be connected to in order to minimize the total installation cost.
 
 ## Installation
