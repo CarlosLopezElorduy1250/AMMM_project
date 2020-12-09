@@ -16,11 +16,14 @@ class City:
         self.cx = coord[0]
         self.cy = coord[1]
         self.pc = pc
+        self.primary_l = None
+        self.secondary_l = None
 
 class Location:
     def __init__(self, lx, ly):
         self.lx = lx
         self.ly = ly
+        self.type = None
 
 class Centre:
     def __init__(self, ctype, clocation, ccities):
