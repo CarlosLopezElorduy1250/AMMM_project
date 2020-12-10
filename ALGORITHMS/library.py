@@ -15,6 +15,7 @@ class City:
     def __init__(self, coord, pc):
         self.cx = coord[0]
         self.cy = coord[1]
+        self.coord = coord
         self.pc = pc
         self.primary_l = None
         self.secondary_l = None
@@ -23,6 +24,7 @@ class Location:
     def __init__(self, lx, ly):
         self.lx = lx
         self.ly = ly
+        self.coord = (lx, ly)
         self.type = None
 
 class Centre:
@@ -212,6 +214,6 @@ def servesLocCit(l, c):
     dist_c2l = distance((name2city[c].cx, name2city[c].cy) , (name2location[current_location].lx, name2location[current_location].ly))
 
     # TEST PRIMARY
-    
+
 
     # TEST SECONDARY
