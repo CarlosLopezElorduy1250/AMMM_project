@@ -1,0 +1,10 @@
+name: ammm
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.6.9
+  - numpy=1.19.1
+  - argparse = 1.4.0
+
