@@ -5,6 +5,8 @@
 
 import sys, os, yaml
 from argparse import ArgumentParser
+from algorithms.library import *
+from algorithms.greedy import Solver_Greedy
 
 def parse_args():
     ''' 
@@ -59,10 +61,17 @@ def read_yaml(config_file):
 if __name__ == '__main__':
     
     args=parse_args()
+    if args.verbose: sys.stderr.write("Reading configuration file...\n")
     config = read_yaml(args.config)
+    d_center, name2location, name2city, name2type = parse_input(config["inputDataFile"])
 
-    if args.verbose: 
-        sys.stderr.write("Solution completed successfully.\n")
+    if args.verbose: sys.stderr.write("Solver method: {}\n".format(config["solver"])) 
+    
+    if config["solver"]=="Greedy":
+        greedy = Solver_Greedy().solve(d_center, name2location, name2city, name2type)
+
+
+    if args.verbose: sys.stderr.write("Solution completed successfully!\n")
     sys.exit(0)
 
 
