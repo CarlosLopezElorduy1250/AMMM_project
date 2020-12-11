@@ -32,7 +32,7 @@ Other versions are not guaranteed to work as expected.
 After installing conda or miniconda, install the remaining dependencies with:
 
 ```bash
-conda env create -f install/environment.yml
+conda env create -f environment.yml
 ```
 ### Activate environment
 
