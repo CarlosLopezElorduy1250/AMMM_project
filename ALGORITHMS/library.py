@@ -1,6 +1,5 @@
 import sys
 import numpy as np
-# from argparse import ArgumentParser, RawTextHelpFormatter
 
 # ===============
 # === CLASSES ===
@@ -27,25 +26,25 @@ class Location:
         self.coord = (lx, ly)
         self.type = None
 
-class Centre:
-    def __init__(self, ctype, clocation, ccities):
-        self.type = ctype           # Class Type
-        self.location = clocation   # Class Location
-        self.cities = ccities       # List of the cities it serves (class Cities)
+# class Centre:
+#     def __init__(self, ctype, clocation, ccities):
+#         self.type = ctype           # Class Type
+#         self.location = clocation   # Class Location
+#         self.cities = ccities       # List of the cities it serves (class Cities)
     
-    def canPrimary(self, city):
-        return distance((city.cx, city.cy),(self.location)) <= self.type.d_city
+#     def canPrimary(self, city):
+#         return distance((city.cx, city.cy),(self.location)) <= self.type.d_city
 
-    def canSecondary(self, city):
-        return distance((city.cx, city.cy),(self.location)) <= self.type.d_city * 3
+#     def canSecondary(self, city):
+#         return distance((city.cx, city.cy),(self.location)) <= self.type.d_city * 3
 
-    def exceedsCapacity(self):
-        global centre2cities_primary, centre2cities_secondary
+#     def exceedsCapacity(self):
+#         global centre2cities_primary, centre2cities_secondary
 
-        result = 0
-        result += centre2cities_primary[self].pc + (centre2cities_secondary[self].pc)*0.1
+#         result = 0
+#         result += centre2cities_primary[self].pc + (centre2cities_secondary[self].pc)*0.1
 
-        return self.type.cap >= result
+#         return self.type.cap >= result
 
 # =================
 # === FUNCTIONS ===
@@ -57,19 +56,10 @@ def parse_input(dat):
         *.dat   (following the format of "project.template.mod")
 
     Returns:
-        [0] nLocations,
-        [1] nCities,
-        [2] nTypes,
-        [3] p,
-        [4] posCities,
-        [5] posLocations,
-        [6] d_city_input,
-        [7] cap_input,
-        [8] cost_input,
-        [9] d_center
-        [10] name2location
-        [11] name2city
-        [12] name2type
+        [0] d_center
+        [1] name2location
+        [2] name2city
+        [3] name2type
     '''
 
     nLocations  = 0
@@ -199,21 +189,24 @@ def parse_input(dat):
     for t in range(nTypes):
         name2type[t] = Type(cap_input[t], d_city_input[t], cost_input[t])
 
-    return (nLocations, nCities, nTypes, p, posCities, posLocations, d_city_input, cap_input, cost_input, d_center, name2location, name2city, name2type)
+    return (d_center, name2location, name2city, name2type)
 
-def distance(a, b): # Euclidean distance between two points ->  a = (a_x, a_y) | b = (b_x, b_y)
+def distance(a, b):
+    '''
+    Euclidean distance between two points ->  a = (a_x, a_y) | b = (b_x, b_y)
+    '''
     return np.sqrt( (a[0]-b[0])**2 + (a[1]-b[1])**2 )
 
 
-def servesLocCit(l, c):
-    '''
-    This function tries to assign the center in location "l" to the city "c" as either primary or secondary (if possible)
-    '''
-    global name2city, name2location
+# def servesLocCit(l, c):
+#     '''
+#     This function tries to assign the center in location "l" to the city "c" as either primary or secondary (if possible)
+#     '''
+#     global name2city, name2location
 
-    dist_c2l = distance((name2city[c].cx, name2city[c].cy) , (name2location[current_location].lx, name2location[current_location].ly))
+#     dist_c2l = distance((name2city[c].cx, name2city[c].cy) , (name2location[current_location].lx, name2location[current_location].ly))
 
-    # TEST PRIMARY
+#     # TEST PRIMARY
 
 
-    # TEST SECONDARY
+#     # TEST SECONDARY
