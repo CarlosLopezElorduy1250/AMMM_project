@@ -5,8 +5,8 @@
 
 import sys, os, yaml
 from argparse import ArgumentParser
-from algorithms.library import *
-from algorithms.greedy import Solver_Greedy
+from library import *
+from ALGORITHMS.greedy import Solver_Greedy
 
 def parse_args():
     ''' 
@@ -28,7 +28,7 @@ def parse_args():
        # required=True,
         default=os.path.join(
                 os.path.dirname(__file__),
-                 "inputs","config.yml"),
+                 "INPUTS","config.yml"),
         help="Input configuration file. (default: %(default)s)",
         metavar="FILE"
         )     
@@ -69,9 +69,11 @@ if __name__ == '__main__':
     
     if config["solver"]=="Greedy":
         greedy = Solver_Greedy().solve(d_center, name2location, name2city, name2type)
-
-
-    if args.verbose: sys.stderr.write("Solution completed successfully!\n")
+        if greedy == 0:
+            sys.stderr.write("Solution not found\n")
+        else:
+            sys.stderr.write("Solution found!!!\n")
+    # if args.verbose: sys.stderr.write("Solution completed successfully!\n")
     sys.exit(0)
 
 

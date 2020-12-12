@@ -11,19 +11,13 @@ class Type:
         self.cost = cost
 
 class City:
-    def __init__(self, coord, pc):
-        self.cx = coord[0]
-        self.cy = coord[1]
-        self.coord = coord
+    def __init__(self,pc):
         self.pc = pc
         self.primary_l = None
         self.secondary_l = None
 
 class Location:
-    def __init__(self, lx, ly):
-        self.lx = lx
-        self.ly = ly
-        self.coord = (lx, ly)
+    def __init__(self):
         self.type = None
 
 # class Centre:
@@ -123,7 +117,6 @@ def parse_input(dat):
                     elif line[0] == "posLocations":
                         start = False
                         a, b = None, None
-                        i = 0
                         for chunk in line:
                             if chunk == "];":
                                 start = False
@@ -135,8 +128,7 @@ def parse_input(dat):
                                     b = chunk[:-1]
                                 if a is not None and b is not None:
                                     posLocations.append((int(a),int(b)))
-                                    name2location[i]=Location(int(a), int(b))
-                                    i += 1
+                                    name2location[(int(a), int(b))]=Location()
                                     a, b = None, None
                                 
                             if chunk == "[":
@@ -144,16 +136,16 @@ def parse_input(dat):
                     elif line[0] == "d_city":
                         start = False
                         for chunk in line:
-                            if len(chunk)!=1:
-                                if chunk[-1]==";":
-                                    d_city_input.append(int(chunk[:-2]))
-                                start = False
-
-                            if start:
-                                d_city_input.append(int(chunk))
-                                
-                            if chunk == "[":
+                            if chunk[0] == "[":
                                 start = True
+                            if start:
+                                if chunk[0] == "[":
+                                    if len(chunk) > 1:
+                                        d_city_input.append(int(chunk[1:]))
+                                elif chunk[-1] == ";":
+                                    d_city_input.append(int(chunk[:-2]))
+                                else:
+                                    d_city_input.append(int(chunk))
                     elif line[0] == "cap":
                         start = False
                         for chunk in line:
@@ -161,7 +153,8 @@ def parse_input(dat):
                                 start = True
                             if start:
                                 if chunk[0] == "[":
-                                    cap_input.append(int(chunk[1:]))
+                                    if len(chunk) > 1:
+                                        cap_input.append(int(chunk[1:]))
                                 elif chunk[-1] == ";":
                                     cap_input.append(int(chunk[:-2]))
                                 else:
@@ -175,7 +168,8 @@ def parse_input(dat):
                                 start = True
                             if start:
                                 if chunk[0] == "[":
-                                    cost_input.append(int(chunk[1:]))
+                                    if len(chunk) > 1:
+                                        cost_input.append(int(chunk[1:]))
                                 elif chunk[-1] == ";":
                                     cost_input.append(int(chunk[:-2]))
                                 else:
@@ -183,8 +177,10 @@ def parse_input(dat):
                     elif line[0] == "d_center":
                         d_center = float(line[2][:-1])
 
-    for c in range(nCities):
-        name2city[c] = City(posCities[c], p[c])
+    ind_cities = 0
+    for c in posCities:
+        name2city[c] = City(p[ind_cities])
+        ind_cities += 1
 
     for t in range(nTypes):
         name2type[t] = Type(cap_input[t], d_city_input[t], cost_input[t])
@@ -197,16 +193,3 @@ def distance(a, b):
     '''
     return np.sqrt( (a[0]-b[0])**2 + (a[1]-b[1])**2 )
 
-
-# def servesLocCit(l, c):
-#     '''
-#     This function tries to assign the center in location "l" to the city "c" as either primary or secondary (if possible)
-#     '''
-#     global name2city, name2location
-
-#     dist_c2l = distance((name2city[c].cx, name2city[c].cy) , (name2location[current_location].lx, name2location[current_location].ly))
-
-#     # TEST PRIMARY
-
-
-#     # TEST SECONDARY
