@@ -1,0 +1,13 @@
+ nLocations = 5;
+ nCities    = 7;
+ nTypes     = 3;
+
+ p            = [   3     4     7     1     2     2     5   ];   // population for each city
+ posCities    = [ [3 2] [1 4] [1 3] [1 2] [4 3] [2 2] [0 1] ]; // [x,y]
+ posLocations = [ [3 1] [1 2] [0 2] [1 3] [3 1] ];             // [x,y]
+
+ d_city = [ 3  7  4];
+ cap    = [19  5  8];
+ cost   = [49 45  23];
+
+ d_center = 1.1;
