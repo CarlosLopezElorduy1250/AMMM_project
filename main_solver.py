@@ -1,7 +1,7 @@
 #!/opt/miniconda3/envs/ammm/bin/python
 
 ### Created: Dec, 2020
-### Authors: Paula Iborra, Carlos Lópex 
+### Authors: Paula Iborra, Carlos López 
 
 import sys, os, yaml
 from argparse import ArgumentParser
@@ -60,20 +60,35 @@ def read_yaml(config_file):
 
 if __name__ == '__main__':
     
-    args=parse_args()
-    if args.verbose: sys.stderr.write("Reading configuration file...\n")
+    args=parse_args() 
     config = read_yaml(args.config)
+    if config["verbose"]==True: sys.stderr.write("Read configuration file\n")
     d_center, name2location, name2city, name2type = parse_input(config["inputDataFile"])
 
-    if args.verbose: sys.stderr.write("Solver method: {}\n".format(config["solver"])) 
+    if config["verbose"]==True: sys.stderr.write("Solver method: {}\n".format(config["solver"])) 
     
     if config["solver"]=="Greedy":
         greedy = Solver_Greedy().solve(d_center, name2location, name2city, name2type)
         if greedy == 0:
-            sys.stderr.write("Solution not found\n")
+            if config["verbose"]==True: sys.stderr.write("Solution not found\n")
+            with open(config["solutionFile"], 'w+') as output:
+                output.write("Data from: %s\n" %(config["inputDataFile"]))
+                output.write("Solution not found.")
+
         else:
-            sys.stderr.write("Solution found!!!\n")
-    # if args.verbose: sys.stderr.write("Solution completed successfully!\n")
+            if config["verbose"]==True: sys.stderr.write("Solution found. Written to: %s\n" %(config["solutionFile"]))
+            with open(config["solutionFile"], 'w+') as output:
+                output.write("Data from: %s\n" %(config["inputDataFile"]))
+                output.write("Solution with cost: %s \n"%(greedy[2]))
+                output.write("\n##################################################################################################\n\n")
+                for city in greedy[0].keys():
+                    output.write(greedy[0][city].print_class())
+                output.write("\n##################################################################################################\n\n")
+                for loc in greedy[1].keys(): 
+                    output.write(greedy[1][loc].print_class())
+
+
+    if config["verbose"]==True: sys.stderr.write("DONE!\n")
     sys.exit(0)
 
 

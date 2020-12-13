@@ -1,20 +1,8 @@
 # --- Common specific parameters ------------------------------------------------------------------------------
-inputDataFile        : "INPUTS/project.2.dat"        # Input DAT file
-solutionFile         : "SOLUTIONS/project.2.sol"     # Output DAT file (solution)
+inputDataFile        : "DATA/project.4.dat"        # Input DAT file
+solutionFile         : "SOLUTIONS/project.4.sol"     # Output DAT file (solution)
 solver               : "Greedy"                      # Supported solvers: Greedy / localSearch / GRASP
-maxExecTime          : "300"                          # Maximum execution time in seconds
-verbose              : "True"                         # Verbose mode?
+verbose              : False                         # Verbose mode?
 
 # --- Greedy / Random specific parameters ---------------------------------------------------------------------
 # No specific parameters
-
-# --- GRASP constructive specific parameters ------------------------------------------------------------------
-# Ignored if solver is not GRASP.
-# Alpha parameter for the GRASP solver.
-GRASP: {alpha: 0.4}                
-
-# --- Local Search specific parameters ------------------------------------------------------------------------
-# Ignored if solver is not localSearch.
-# Supported Neighborhoods: TaskExchange
-# Supported Policies: FirstImprovement / BestImprovement
-localSearch: {neighborhoodStrategy : "TaskExchange", policy : "FirstImprovement"}
