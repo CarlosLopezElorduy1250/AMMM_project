@@ -72,9 +72,11 @@ if __name__ == '__main__':
         greedy = Solver_Greedy().solve(d_center, name2location, name2city, name2type)
         finalTime = round(time.time() - startTime, 5)
         if greedy == 0:
-            if config["verbose"]==True: sys.stderr.write("Solution not found\n")
+            if config["verbose"]==True: sys.stderr.write("Solution not found. Written to: %s\n" %(config["solutionFile"]))
             with open(config["solutionFile"], 'w+') as output:
                 output.write("Data from: %s\n" %(config["inputDataFile"]))
+                output.write("Execution time: {}".format(finalTime))
+                output.write("\n"+"#"*98+"\n\n")
                 output.write("Solution not found.")
 
         else:

@@ -25,10 +25,12 @@ class Location:
     def __init__(self, coord):
         self.type = None
         self.coord = coord
+        self.f_cap = None
+        self.max_cap = None
     
     def print_class(self):
         if self.type is not None:
-            return "Location %s has a center of type %s. \n" %(self.coord, self.type)
+            return "Location %s has a center of type %s. It serves %s inhabitants, max is %s.\n" %(self.coord, self.type, self.f_cap, self.max_cap)
         else: return ""
 
 # class Centre:

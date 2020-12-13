@@ -51,6 +51,7 @@ class Solver_Greedy:
             [1]: Tupple (primary_cities, secondary_cities)
         '''
         type_citycost = (None, 99999) # (c_type, costCity) Tupple where the 1st element is type of the center and 2nd is the cost per city
+        type_filled = 0
         cities_served = (set(), set())
         for t in name2type.keys():
             filled_cap = 0
@@ -71,10 +72,11 @@ class Solver_Greedy:
             cost_type = name2type[t].cost / filled_cap
             if cost_type < type_citycost[1]:
                 type_citycost = (t, cost_type)
+                type_filled = filled_cap
                 cities_served = (primary, secondary)
         
         if cities_served != (set(),set()):
-            return type_citycost[0], cities_served, name2type[type_citycost[0]].cap - filled_cap
+            return type_citycost[0], cities_served, round(type_filled, 1), name2type[type_citycost[0]].cap
         else:
             return 0
 
@@ -102,7 +104,7 @@ class Solver_Greedy:
             if len(unoccupied_l) > 0:
                 isLocValid = False
                 try:
-                    type_loc, cities_served, remaining_cap = self.assign_type2location(min_location,unserved_c, name2type, name2city)
+                    type_loc, cities_served, filled_cap, max_cap = self.assign_type2location(min_location,unserved_c, name2type, name2city)
                     isLocValid = True
 
                 except:
@@ -114,6 +116,8 @@ class Solver_Greedy:
                     unoccupied_l.remove(min_location)
                     occupied_l.add(min_location)
                     name2location[min_location].type = type_loc
+                    name2location[min_location].f_cap = filled_cap
+                    name2location[min_location].max_cap = max_cap
                     total_cost += name2type[type_loc].cost
                     if len(cities_served[0]) > 0:
                         for c in cities_served[0]:

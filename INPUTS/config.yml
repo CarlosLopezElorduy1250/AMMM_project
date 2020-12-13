@@ -1,6 +1,6 @@
 # --- Common specific parameters ------------------------------------------------------------------------------
-inputDataFile        : "DATA/project.4.dat"        # Input DAT file
-solutionFile         : "SOLUTIONS/project.4.sol"     # Output DAT file (solution)
+inputDataFile        : "DATA/project.1.dat"        # Input DAT file
+solutionFile         : "SOLUTIONS/project.1.sol"     # Output DAT file (solution)
 solver               : "Greedy"                      # Supported solvers: Greedy / localSearch / GRASP
 verbose              : True                         # Verbose mode?
 
