@@ -4,6 +4,7 @@ import numpy as np
 # ===============
 # === CLASSES ===
 # ===============
+
 class Type:
     def __init__(self, cap, d_city, cost):
         self.cap = cap
@@ -11,14 +12,24 @@ class Type:
         self.cost = cost
 
 class City:
-    def __init__(self,pc):
+    def __init__(self,pc, coord):
+        self.coord = coord
         self.pc = pc
         self.primary_l = None
         self.secondary_l = None
+    
+    def print_class(self):
+        return "City %s is served by: Primary center in location %s || Secondary center in location %s \n" %(self.coord, self.primary_l, self.secondary_l)
 
 class Location:
-    def __init__(self):
+    def __init__(self, coord):
         self.type = None
+        self.coord = coord
+    
+    def print_class(self):
+        if self.type is not None:
+            return "Location %s has a center of type %s. \n" %(self.coord, self.type)
+        else: return ""
 
 # class Centre:
 #     def __init__(self, ctype, clocation, ccities):
@@ -128,7 +139,7 @@ def parse_input(dat):
                                     b = chunk[:-1]
                                 if a is not None and b is not None:
                                     posLocations.append((int(a),int(b)))
-                                    name2location[(int(a), int(b))]=Location()
+                                    name2location[(int(a), int(b))]=Location((int(a),int(b)))
                                     a, b = None, None
                                 
                             if chunk == "[":
@@ -179,7 +190,7 @@ def parse_input(dat):
 
     ind_cities = 0
     for c in posCities:
-        name2city[c] = City(p[ind_cities])
+        name2city[c] = City(p[ind_cities], c)
         ind_cities += 1
 
     for t in range(nTypes):
