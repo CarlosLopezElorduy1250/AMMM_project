@@ -80,7 +80,6 @@ class Solver_Greedy:
 
 
     def solve(self, d_center, name2location, name2city, name2type):
-
         # Set of cities without primary, secondary or both centers
         unserved_c = set()  
         for c in name2city.keys():
@@ -144,5 +143,6 @@ class Solver_Greedy:
                                 min_location = new_location
             else:
                 return 0
-
+        
+        
         return name2city, name2location, total_cost

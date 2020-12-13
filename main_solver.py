@@ -3,7 +3,7 @@
 ### Created: Dec, 2020
 ### Authors: Paula Iborra, Carlos López 
 
-import sys, os, yaml
+import sys, os, yaml, time
 from argparse import ArgumentParser
 from library import *
 from ALGORITHMS.greedy import Solver_Greedy
@@ -68,7 +68,9 @@ if __name__ == '__main__':
     if config["verbose"]==True: sys.stderr.write("Solver method: {}\n".format(config["solver"])) 
     
     if config["solver"]=="Greedy":
+        startTime = time.time()
         greedy = Solver_Greedy().solve(d_center, name2location, name2city, name2type)
+        finalTime = round(time.time() - startTime, 5)
         if greedy == 0:
             if config["verbose"]==True: sys.stderr.write("Solution not found\n")
             with open(config["solutionFile"], 'w+') as output:
@@ -79,16 +81,18 @@ if __name__ == '__main__':
             if config["verbose"]==True: sys.stderr.write("Solution found. Written to: %s\n" %(config["solutionFile"]))
             with open(config["solutionFile"], 'w+') as output:
                 output.write("Data from: %s\n" %(config["inputDataFile"]))
-                output.write("Solution with cost: %s \n"%(greedy[2]))
-                output.write("\n##################################################################################################\n\n")
+                output.write("Execution time: {}".format(finalTime))
+                output.write("\n"+"#"*98+"\n\n")
+                output.write("Solution with cost: %s \n\n"%(greedy[2]))
                 for city in greedy[0].keys():
                     output.write(greedy[0][city].print_class())
-                output.write("\n##################################################################################################\n\n")
+                output.write("\n")
                 for loc in greedy[1].keys(): 
                     output.write(greedy[1][loc].print_class())
+                output.write("\n"+"#"*98+"\n\n")
 
 
-    if config["verbose"]==True: sys.stderr.write("DONE!\n")
+    if config["verbose"]==True: sys.stderr.write("Execution time: {}".format(finalTime)+"\nDONE!\n")
     sys.exit(0)
 
 

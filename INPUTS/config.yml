@@ -2,7 +2,7 @@
 inputDataFile        : "DATA/project.4.dat"        # Input DAT file
 solutionFile         : "SOLUTIONS/project.4.sol"     # Output DAT file (solution)
 solver               : "Greedy"                      # Supported solvers: Greedy / localSearch / GRASP
-verbose              : False                         # Verbose mode?
+verbose              : True                         # Verbose mode?
 
 # --- Greedy / Random specific parameters ---------------------------------------------------------------------
 # No specific parameters
