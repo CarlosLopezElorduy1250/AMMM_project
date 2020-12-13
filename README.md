@@ -41,13 +41,15 @@ Activate the Conda environment with:
 conda activate ammm
 ```
 
-## Testing the installation
-
-...
-
 ## Running the workflow
 
-...
+1. Populate the `INPUT/config.yml` file with required parameters.
+
+2. Assuming that your current directory is the repository's root directory, start your workflow run:
+```bash
+./main_solver.py
+```
+
 
 
 
