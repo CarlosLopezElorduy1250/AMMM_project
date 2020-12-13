@@ -26,7 +26,7 @@ cd AMMM_project
 Dependencies can be conveniently installed with the [Conda][conda]
 package manager. We recommend that you install
 [Miniconda][miniconda-installation] for your system. Be sure to select
-Python 3 option. The workflow was built and tested with `... include conda/miniconda version`.
+Python 3 option. The workflow was built and tested with `conda 4.8.5`.
 
 After installing conda or miniconda, install the remaining dependencies with:
 
